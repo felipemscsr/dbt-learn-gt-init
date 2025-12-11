@@ -1,0 +1,46 @@
+sources:
+  - name: jaffle_shop
+    database: raw
+    schema: jaffle_shop
+    description: database with jaffle shop orders and customers
+    tables:
+      - name: customers
+        description: "{{ doc('customers') }}"
+        freshness: null
+        columns:
+          - name: id
+            description: primary key for customers
+            data_tests:
+              - unique
+              - not_null
+          - name: first_name
+            data_tests:
+              - dbt_utils.not_empty_string
+      - name: orders
+        description: "{{ doc('orders') }}"
+        freshness: null
+        columns:
+          - name: id
+            description: primary key for orders
+            data_tests:
+              - unique
+              - not_null
+          - name: status
+            data_tests:
+              - accepted_values:
+                  values:
+                    - 'returned'
+                    - 'completed'
+                    - 'return_pending'
+                    - 'shipped'
+                    - 'placed'
+          - name: user_id
+            data_tests:
+              - relationships:
+                  field: id
+                  to: source('jaffle_shop', 'customers')
+      - name: order_items
+        columns:
+          - name: product_price
+            data_tests:
+              - greater_than_0
