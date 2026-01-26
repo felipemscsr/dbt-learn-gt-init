@@ -1,0 +1,30 @@
+models:
+  - name: stg_stripe__payment
+    description:
+      This model processes and standardizes payment data from Stripe, providing
+      a structured view of payment transactions. It includes details such as payment
+      identifiers, order associations, methods, statuses, amounts, and timestamps, which
+      are essential for financial reporting and analysis.
+    columns:
+      - name: payment_id
+        description: A unique identifier for each payment transaction. This is a primary key.
+        data_tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: The identifier for the order associated with the payment. This is a foreign key.
+        data_tests:
+          - not_null
+          - relationships:
+              field: order_id
+              to: ref('stg_jaffle_shop__orders')
+      - name: payment_method
+        description: The method used to process the payment, such as credit card or bank transfer.
+      - name: payment_status
+        description: The current status of the payment, indicating whether it is completed, pending, or failed.
+      - name: amount
+        description: The total amount of the payment transaction.
+      - name: created
+        description: The date when the payment was created.
+      - name: _batched_at
+        description: The datetime when the payment data was batched for processing.
