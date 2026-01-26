@@ -16,8 +16,9 @@ models:
         data_tests:
           - not_null
           - relationships:
-              field: order_id
-              to: ref('stg_jaffle_shop__orders')
+              arguments:
+                field: order_id
+                to: ref('stg_jaffle_shop__orders')
       - name: payment_method
         description: The method used to process the payment, such as credit card or bank transfer.
       - name: payment_status
