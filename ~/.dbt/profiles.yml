@@ -1,0 +1,13 @@
+dbt_fundamentals:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: jaffle-shop-484903
+      dataset: analytics_dbt
+      threads: 4
+      timeout_seconds: 300
+      location: US
+      keyfile: C:/Users/zoero/Downloads/jaffle-shop-484903-13daf1c5d97a.json
+      priority: interactive

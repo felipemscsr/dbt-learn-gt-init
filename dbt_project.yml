@@ -1,13 +1,13 @@
-
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'jaffle_shop'
+name: 'dbt_fundamentals'
 version: '1.0.0'
 config-version: 2
+profile: 'dbt_fundamentals'
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'default'
+# Profiles are stored in the profiles.yml file in your home directory.
 
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
@@ -33,7 +33,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  jaffle_shop:
-    +materialized: view
-
-    
+  dbt_fundamentals:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
