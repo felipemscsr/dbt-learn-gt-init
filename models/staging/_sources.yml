@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: jaffle 
+    database: jaffle-shop-481609
+    schema: jaffle
+    description: A clone of a Postgres database 
+    tables:
+      - name: customers
+        description: One record per person who has purchased one or more items
