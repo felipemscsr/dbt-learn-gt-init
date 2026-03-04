@@ -3,6 +3,6 @@ target/
 dbt_modules/
 logs/
 dbt_internal_packages/
-profiles.yml/
-user.yml/
+profiles.yml
+.user.yml
 
